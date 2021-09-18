@@ -1,5 +1,5 @@
 {
-  "name": "FMBlocker",
+  "name": "GradescopePlus",
   "options_page": "options.html",
   "browser_action": {
     "default_popup": "popup.html",
@@ -12,7 +12,7 @@
     "storage"
   ],
   "content_scripts": [{
-    "matches": ["https://www.fmkorea.com/*", "http://www.fmkorea.com/*"],
+    "matches": ["https://www.gradescope.com/*"],
     "js": ["contentScript.bundle.js"],
     "css": ["content.styles.css"]
   }],
