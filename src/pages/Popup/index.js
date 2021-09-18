@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Settings from '../shared/settings.jsx'
-import '../../assets/img/icon-34.png'
-import '../../assets/img/icon-128.png'
-
+import Settings from '../shared/settings'
 
 function App(){
     return(
