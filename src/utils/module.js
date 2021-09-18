@@ -1,6 +1,6 @@
-// Takes str in the form of "OCT 24 AT 11:00 PM").
-// Returns datetime object.
-function strToDateObj(dateStr){
+// Takes str in the form of "OCT 24 AT 11:00PM").
+// Returns datetime object, in UTC time.
+export function strToDateObj(dateStr){
     const monthsLookup = {
         'JAN' : '00',
         'FEB' : '01',
@@ -25,8 +25,11 @@ function strToDateObj(dateStr){
     let monthIndex = monthsLookup[strElements[0]];
     let day = strElements[1];
 
-    let isPM = (strElements.substring(0, -2) == "PM");
-    let [hours, minutes] = strElements[2].split(":");
+    let lastElement = strElements[2];
+    console.log(lastElement);
+    isPM = (lastElement.slice(-2) == "PM");
+    lastElement = lastElement.substring(0, lastElement.length - 2);
+    let [hours, minutes] = lastElement.split(":");
 
     if (isPM){
         hours = parseInt(hours) + 12;
@@ -41,7 +44,3 @@ function strToDateObj(dateStr){
     console.log(year, monthIndex, day, hours, minutes, isPM);
     return (new Date(year, monthIndex, day, hours, minutes));
 }
-
-console.log(strToDateObj("OCT 24 AT 11:00PM"));
-console.log(strToDateObj("OCT 4 AT 7:00AM"));
-console.log(strToDateObj("DEC 12 AT 12:00PM"));
