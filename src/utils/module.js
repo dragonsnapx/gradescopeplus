@@ -44,3 +44,26 @@ export function strToDateObj(dateStr){
     console.log(year, monthIndex, day, hours, minutes, isPM);
     return (new Date(year, monthIndex, day, hours, minutes));
 }
+
+//Returns grade in % form
+export function convertGrade(gradeStr){
+    //gets the points the student earned
+    var earned = parseInt(gradeStr); 
+
+    //gets the index of the second half of the string (where the total lies)
+    var secondHalf = gradeStr.indexOf("/"); 
+
+    //gets the total pts
+    var total = parseInt(gradeStr.slice(secondHalf, gradeStr.length)); 
+
+    //calculates grade
+    var grade = earned/total; 
+
+    //converts grade to a string
+    var gradeString = grade.toString(); 
+
+    //should I print or return?
+    console.log(gradeString.concat("%")); 
+    return (gradeString.concat("%"));
+} 
+
