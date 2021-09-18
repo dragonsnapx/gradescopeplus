@@ -1,24 +1,63 @@
-h1,h2,h3,h4,h5,h6,p,a,input{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    color: #C9D1D9;
+h1,h2,h3,h4,h5,h6,p,a,input, button{
+    font-family: --apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: black;
 }
 
 body{
-    background-color: #06090F;
+    margin: 0px !important;
 }
 
 #app{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header{
+    background-color: #1ca0a0;
+    color: white;
+    padding: 5px 20px;
+}
+
+.modal-body{
+    padding: 10px 10px;
+    font-size: 15px;
+}
+
+.title{
+    color: white;
+    font-size: 20px !important;
+}
+
+.credits{
+    color: white;
+    margin-top: -12.5px;
+}
+
+.calendar-container{
     padding: 10px;
+    background-color: #efefef;
+    border-radius: 5px;
 }
 
-.fmblocker-child-node, .fmblocker-parent-node{
-    color: #C9D1D9;
+.add-button{
+    padding: 3px 10px;
+    background-color: white;
+    border: 2px solid #1ca0a0;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: .2s;
 }
 
-.fmblocker-parent-node{
-    color: aquamarine;
+.sync-date{
+    margin: 0;
+    margin-bottom: 5px;
 }
 
-.fmblocker-child-node{
-    padding-left: 20px;
+.sync-subject{
+    font-weight: bold;
+}
+
+.add-button:hover{
+    background-color: #1ca0a0;
+    color: white;
 }

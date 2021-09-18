@@ -1,5 +1,7 @@
 module.exports = {
-  store: {
-
+  Constants: {
+    store: {
+      CALENDARS: 'calendars'
+    }
   }
 }
