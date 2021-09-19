@@ -61,3 +61,7 @@ body{
     background-color: #1ca0a0;
     color: white;
 }
+
+.help-text{
+    margin-bottom: 5px;
+}

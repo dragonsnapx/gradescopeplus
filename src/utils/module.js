@@ -27,7 +27,7 @@ export function strToDateObj(dateStr){
 
     let lastElement = strElements[2];
     console.log(lastElement);
-    isPM = (lastElement.slice(-2) == "PM");
+    const isPM = (lastElement.slice(-2) == "PM");
     lastElement = lastElement.substring(0, lastElement.length - 2);
     let [hours, minutes] = lastElement.split(":");
 
@@ -48,21 +48,19 @@ export function strToDateObj(dateStr){
 //returns grade in % form
 export function convertGrade(gradeStr){
     //gets the points the student earned
-    var earned = parseInt(gradeStr); 
+    const earned = parseInt(gradeStr);
 
     //gets the index of the second half of the string (where the total lies)
-    var secondHalf = gradeStr.indexOf("/"); 
+    const secondHalf = gradeStr.indexOf("/");
 
     //gets the total pts
-    var total = parseInt(gradeStr.slice(secondHalf, gradeStr.length)); 
+    const total = parseFloat(gradeStr.slice(secondHalf + 2, gradeStr.length));
 
     //calculates grade
-    var grade = earned/total; 
+    const grade = earned/total * 100;
 
     //converts grade to a string
-    var gradeString = (grade.toString()).concat("%"); 
+    return (grade.toFixed().toString()).concat("%");
 
-    //returns grade in % form
-    return gradeString;
 } 
 

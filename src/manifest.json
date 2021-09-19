@@ -9,10 +9,10 @@
     "128": "icon-128.png"
   },
   "permissions": [
-    "storage"
+    "storage", "tabs", "*://*.gradescope.com/*"
   ],
   "content_scripts": [{
-    "matches": ["https://www.gradescope.com/*"],
+    "matches": ["*://*.gradescope.com/*"],
     "js": ["contentScript.bundle.js"],
     "css": ["content.styles.css"]
   }],

@@ -37,6 +37,7 @@ class Settings extends React.Component{
           <p className='credits'>Jake Lee, Chase Feng, Maddie Freed</p>
         </div>
         <div className='modal-body'>
+          <div className='help-text'>Visit Gradescope to Sync Calendars.</div>
           {calendars ?
             calendars.map(el => <CalendarCard {...el} key={el.name}/>)
             :
