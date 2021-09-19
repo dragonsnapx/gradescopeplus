@@ -19,7 +19,7 @@ class Settings extends React.Component{
       <div id='app'>
         <div className='modal-header'>
           <h1 className='title'>Gradescope+</h1>
-          <p className='credits'>Jake Lee, Chase Feng, Maddie Freed</p>
+          <p className='credits'>Jake Lee, Chase Feng, Maddie Estey</p>
         </div>
         <div className='modal-body'>
           <div className='help-text'>Visit Gradescope to Sync Calendars.</div>
