@@ -37,6 +37,7 @@ body{
     padding: 10px;
     background-color: #efefef;
     border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .add-button{
@@ -46,6 +47,21 @@ body{
     border-radius: 5px;
     font-size: 15px;
     transition: .2s;
+}
+
+.remove-all-btn{
+    padding: 3px 10px;
+    background-color: white;
+    border: 2px solid #e35f5f;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: .2s;
+    margin-top: 5px;
+}
+
+.remove-all-btn:hover{
+    background-color: #e35f5f;
+    color: white;
 }
 
 .sync-date{
