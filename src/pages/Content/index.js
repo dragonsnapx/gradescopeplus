@@ -1,9 +1,8 @@
 const ical = require("ical-generator");
 const {downloadFileFromText} = require("../../utils/saveBlob");
-const {convertGrade, strToDateObj} = require("../../utils/module");
+const {convertGrade, strToDateObj, isUrgent} = require("../../utils/module");
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
-let removedPages = 0;
 
 global.Buffer = global.Buffer || require('buffer/').Buffer;
 
@@ -65,16 +64,28 @@ $$('#assignments-student-table > tbody > tr').forEach(tr => {
     courseAverageBase += base;
     courseAverageGrade += grade;
 
-    submissionScore.insertAdjacentText('beforeend', ` (${score})`);
-
     // Inject scores
-    console.log(score);
+    submissionScore.insertAdjacentText('beforeend', ` (${score})`);
 
   }else{
     // Not submitted or have not been graded
-    const submissionStatus = submissionParent.querySelector('.submissionStatus--text').innerText;
+    const submissionStatus = submissionParent.querySelector('.submissionStatus--text');
+    if(submissionStatus.innerText === "No Submission"){
+      console.log(isUrgent(dueDate));
+      submissionStatus.insertAdjacentText('beforeend', isUrgent(dueDate));
+    }
   }
 });
+
+const courseCalJson = courseCal.toJSON();
+
+chrome.storage.local.get(calendars => {
+  const newCalendar = Object.assign({}, calendars);
+  newCalendar[courseCalJson.name] = courseCalJson;
+  chrome.storage.local.set(newCalendar);
+});
+
+chrome.storage.local.get(cal => console.log(cal));
 
 const multiDownloadHtml = `
   <button id="multi-download" class="download-btn">
@@ -83,8 +94,10 @@ const multiDownloadHtml = `
 `
 
 const totalGradeHtml = `
-  <div class="total-grade">${courseAverageGrade} / ${courseAverageBase} 
-${(courseAverageGrade/courseAverageGrade)}%</div>
+  <div class="total-grade-container">
+    <div class="grade-helper">Cumulative Grade</div>
+    <div class="total-grade">${courseAverageGrade} / ${courseAverageBase} (${((courseAverageGrade/courseAverageBase) * 100).toFixed()}%)</div>
+  </div>
 `
 $('.courseDashboard').insertAdjacentHTML('afterend', totalGradeHtml);
 $('.courseDashboard').insertAdjacentHTML('afterend', multiDownloadHtml);
@@ -94,6 +107,6 @@ document.body.addEventListener('click', event => {
 
   if(targetId === 'multi-download'){
     const calStr = courseCal.toString();
-    downloadFileFromText(`courseName.ics`, calStr);
+    downloadFileFromText(`${courseName}.ics`, calStr);
   }
 });

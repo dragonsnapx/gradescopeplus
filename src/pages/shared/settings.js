@@ -1,30 +1,15 @@
 import React from 'react';
 import './settings.css';
-import {Constants} from "./constants";
-import ical from "ical-generator";
 import CalendarCard from "./CalendarCard";
+
+global.Buffer = global.Buffer || require('buffer/').Buffer;
 
 class Settings extends React.Component{
   constructor(props) {
     super(props);
 
     this.state = {
-      calendars: [
-        {
-          data: {
-            description: "Discrete Mathematics",
-            events: [],
-            method: null,
-            name: "Chase Bank",
-            prodId: "//sebbo.net//ical-generator//EN",
-            scale: null,
-            source: null,
-            timezone: null,
-            ttl: null,
-            url: null,
-          }
-        }
-      ]
+      calendars: []
     }
   }
 
@@ -38,21 +23,30 @@ class Settings extends React.Component{
         </div>
         <div className='modal-body'>
           <div className='help-text'>Visit Gradescope to Sync Calendars.</div>
-          {calendars ?
+          {calendars.length > 0  ?
             calendars.map(el => <CalendarCard {...el} key={el.name}/>)
             :
             <p>No Calenders are available. Visit Gradescope and create new calendars to get started.</p>
           }
+          <button className='remove-all-btn' onClick={() => this.reset()}> Reset All Calendars </button>
         </div>
       </div>
     );
   }
 
   componentDidMount() {
-    console.log(ical({name: 'Chase Bank'}))
-    // chrome.storage.local.get(Constants.store.CALENDARS, calendars => {
-    //   this.setState(calendars);
-    // })
+    chrome.storage.local.get(cals => {
+      const calendars = [];
+      for(const cal in cals){
+        calendars.push(cals[cal]);
+      }
+      console.log(calendars);
+      this.setState({calendars});
+    });
+  }
+
+  reset = () => {
+    chrome.storage.local.remove('calendars');
   }
 }
 

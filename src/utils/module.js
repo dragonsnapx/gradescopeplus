@@ -69,14 +69,15 @@ export function convertGrade(gradeStr){
 
 //marks assignments as urgent so students can see it at a glance
 export function isUrgent(dueDate){
-    var currentDate = new Date();
-    var msg = "";
-    var differenceInDates = (dueDate.getTime - currentDate.getTime) / (1000*3600*24);
-    if(( differenceInDates < 3){
-        msg = "URGENT! Do ASAP";
+    const currentDate = new Date();
+    let msg = "";
+    debugger;
+    const differenceInDates = (dueDate.getTime() - currentDate.getTime()) / (1000*3600*24);
+    if (differenceInDates < 1 && differenceInDates >= 0){
+        msg = " (Due Today)";
     }
-    else if(differenceInDates > 3 && differenceInDates < 8){
-        msg = "Start this soon!";
+    else if(differenceInDates > 1 && differenceInDates < 3){
+        msg = " (Due Soon)";
     }
     return msg;
 }

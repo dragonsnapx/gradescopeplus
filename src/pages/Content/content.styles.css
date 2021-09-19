@@ -15,3 +15,17 @@
     background-color: #1ca0a0;
     color: white;
 }
+
+.total-grade-container{
+    margin: 20px 0;
+}
+
+.grade-helper{
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.total-grade{
+    font-size: 30px;
+}
