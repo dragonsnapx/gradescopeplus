@@ -1,4 +1,7 @@
 // Takes str in the form of "OCT 24 AT 11:00PM").
+
+import { isPropertyAccessOrQualifiedName } from "typescript";
+
 // Returns datetime object, in UTC time.
 export function strToDateObj(dateStr){
     const monthsLookup = {
@@ -64,3 +67,16 @@ export function convertGrade(gradeStr){
 
 } 
 
+//marks assignments as urgent so students can see it at a glance
+export function isUrgent(dueDate){
+    var currentDate = new Date();
+    var msg = "";
+    var differenceInDates = (dueDate.getTime - currentDate.getTime) / (1000*3600*24);
+    if(( differenceInDates < 3){
+        msg = "URGENT! Do ASAP";
+    }
+    else if(differenceInDates > 3 && differenceInDates < 8){
+        msg = "Start this soon!";
+    }
+    return msg;
+}
