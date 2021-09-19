@@ -45,7 +45,7 @@ export function strToDateObj(dateStr){
     return (new Date(year, monthIndex, day, hours, minutes));
 }
 
-//Returns grade in % form
+//returns grade in % form
 export function convertGrade(gradeStr){
     //gets the points the student earned
     var earned = parseInt(gradeStr); 
@@ -60,10 +60,9 @@ export function convertGrade(gradeStr){
     var grade = earned/total; 
 
     //converts grade to a string
-    var gradeString = grade.toString(); 
+    var gradeString = (grade.toString()).concat("%"); 
 
-    //should I print or return?
-    console.log(gradeString.concat("%")); 
-    return (gradeString.concat("%"));
+    //returns grade in % form
+    return gradeString;
 } 
 
